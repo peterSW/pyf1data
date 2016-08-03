@@ -30,11 +30,15 @@ class TestParseLapNumber(unittest.TestCase):
         self.assertIsNone(pyf1data.parse_as_lap_number(""))
 
     def test_result_has_number(self):
-        expectedLap = 29
-        self.assertEqual(pyf1data.parse_as_lap_number(str(expectedLap)).number, expectedLap)
+        expected_lap = 29
+        self.assertEqual(pyf1data.parse_as_lap_number(str(expected_lap)).number, expected_lap)
 
     def test_result_with_pit(self):
         self.assertTrue(pyf1data.parse_as_lap_number("18 P").pit)
+
+    def test_gives_none_on_time(self):
+        self.assertIsNone(pyf1data.parse_as_lap_number("11:51:12"))
+
 
 
 class TestParseFirstLapTime(unittest.TestCase):
